@@ -1,18 +1,26 @@
+console.log( "******** app.module.ts ********" );
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
 
+import { HttpService } from "./http.service"; // STITCHING
 
-@NgModule({
+import { HttpClientModule } from "@angular/common/http" //STITCHING
+
+@NgModule( {
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule //STITCHING
   ],
-  providers: [],
+  providers: [
+    HttpService //STITCHING
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

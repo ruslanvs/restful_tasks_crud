@@ -1,5 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+
+<h3>Value of num is {{ num }}</h3>
+<h3>Value of randNum is: {{ randNum }}</h3>
+<h3>{{str}}</h3>
+<input type="text" [value]="first_name"/>
+
+<p *ngIf="loggedIn">You are logged in!</p>
+<p *ngFor="let task of tasks">Task: {{task["title"]}}</p>
+<p *ngIf="tasks.length < 5">You need more tasks</p>
+
+<button (click) = "onButtonClick()" >Click me!</button>
+<button (click) = "onButtonClickParam( 5 )" >Click me!</button>
+<button (click) = "onButtonClickParams( 5, 'hello')" >Click me!</button>
+<button (click) = "onButtonClickEvent( $event )" >Click me!</button>
+
+
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -16,5 +32,10 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
+</ul> -->
+
+<!-- <button (click)="onButtonClick()" >Click me!</button>
+<button (click)="onButtonClickParam(5)">Click me!</button>
+<button (click)="onButtonClickParams(5, 'hello')">Click me!</button>
+<button (click)="onButtonClickEvent($event)">Click me!</button> -->
 
