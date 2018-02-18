@@ -24,7 +24,8 @@ export class AppComponent implements OnInit { //STITCHING2
   constructor( private _httpService: HttpService ){} //STITCHING
   
   ngOnInit(){ //STITCHING2
-    this.getTasksFromService();
+    // this.getTasksFromService();
+    // this.getTask( "5a88ba8bbced5b11f3e1150a" );
     this.num = 7;
     this.randNum = Math.floor( (Math.random() * 2 ) +1 );
     this.str = "Hello Angular Developer!";
@@ -43,6 +44,15 @@ export class AppComponent implements OnInit { //STITCHING2
     });
   }
 
+  task = {};
+  getTask( id ) {
+    let observable = this._httpService.getTask( id );
+    observable.subscribe( data => {
+      this.task = data;
+      console.log( this.task );
+    })
+  }
+
   onButtonClick(): void {
     console.log( `Click event is working` );
   }
@@ -59,5 +69,4 @@ export class AppComponent implements OnInit { //STITCHING2
     console.log( `Click event is working with event: `, event);
   }
 }
-
 

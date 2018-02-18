@@ -16,4 +16,8 @@ export class HttpService {
     // tempObservable.subscribe( data => console.log( "Got our tasks", data ) );//STITCHING2
     return this._http.get( "/tasks" ); //STITCHING2
   }
+
+  getTask( id ){
+    return this._http.get( `/tasks/${id}` );
+  }
 }

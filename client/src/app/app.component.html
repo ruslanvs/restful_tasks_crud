@@ -1,18 +1,38 @@
-<!--The content below is only a placeholder and can be replaced.-->
+
+<button (click) = "getTasksFromService()" >Get all tasks</button>
+
+<p *ngFor="let i of tasks">Task: {{i["title"]}} {{i["description"]}} Id: {{i["_id"]}}</p>
+
+<br>
+<br>
+<br>
+<br>
+
+<!-- <input type="text" [value]="id"/> -->
+
+<!-- this yet works with a hardcoded id -->
+<button (click) = "getTask( '5a88ba8bbced5b11f3e1150a' )" >Click to get task "5a88ba8bbced5b11f3e1150a"</button>
+<p *ngIf = "task.length > 0">The task: {{task[0]["title"]}} {{task[0]["description"]}} Id: {{task[0]["_id"]}}</p>
+
+<br>
+<br>
+<br>
+<br>
+
+<p *ngIf = "loggedIn">You are logged in!</p>
+<p *ngIf = "tasks.length < 5">You need more tasks</p>
+
+<button (click) = "onButtonClick()" >Click me!</button>
+<button (click) = "onButtonClickParam( 5 )" >Click me!</button>
+<button (click) = "onButtonClickParams( 5, 'hello')" >Click me!</button>
+<button (click) = "onButtonClickEvent( $event )" >Click me!</button>
+
 
 <h3>Value of num is {{ num }}</h3>
 <h3>Value of randNum is: {{ randNum }}</h3>
 <h3>{{str}}</h3>
 <input type="text" [value]="first_name"/>
 
-<p *ngIf="loggedIn">You are logged in!</p>
-<p *ngFor="let task of tasks">Task: {{task["title"]}}</p>
-<p *ngIf="tasks.length < 5">You need more tasks</p>
-
-<button (click) = "onButtonClick()" >Click me!</button>
-<button (click) = "onButtonClickParam( 5 )" >Click me!</button>
-<button (click) = "onButtonClickParams( 5, 'hello')" >Click me!</button>
-<button (click) = "onButtonClickEvent( $event )" >Click me!</button>
 
 
 <!-- <div style="text-align:center">
@@ -34,8 +54,4 @@
   </li>
 </ul> -->
 
-<!-- <button (click)="onButtonClick()" >Click me!</button>
-<button (click)="onButtonClickParam(5)">Click me!</button>
-<button (click)="onButtonClickParams(5, 'hello')">Click me!</button>
-<button (click)="onButtonClickEvent($event)">Click me!</button> -->
 
