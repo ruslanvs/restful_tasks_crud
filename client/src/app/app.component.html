@@ -1,24 +1,61 @@
+<h1>New Task</h1>
+<form (submit) = "tasks_create()">
+  <p>{{ new_task | json }}</p>
+  <input type="text" name="new_task.title" [(ngModel)]="new_task.title" placeholder="title"/>
+  <br>
+  <input type="text" name="new_task.description" [(ngModel)]="new_task.description" placeholder="description"/>
+  <br>
+  <input type="submit" value="Create Task" />
+</form>
 
-<button (click) = "getTasksFromService()" >Get all tasks</button>
+<h1>Task List</h1>
 
-<p *ngFor="let i of tasks">Task: {{i["title"]}} {{i["description"]}} Id: {{i["_id"]}}</p>
+<button (click) = "tasks()" >Get all tasks</button>
 
+<p *ngIf = "task.description">
+  {{task.description}}
+</p>
+
+<p *ngFor="let i of tasks_all">
+  <button (click) = "tasks_one( i._id )">Details</button>
+  <button (click) = "updated_task = i"  >Update</button>
+  <button (click) = "tasks_delete( i._id )">Delete</button>
+  Task:
+  {{i.title}}
+</p>
+
+<h1>Edit Task</h1>
+<form (submit) = "tasks_update( updated_task._id )">
+  <p>{{ updated_task | json }}</p>
+  <input type="text" name="updated_task.title" [(ngModel)]="updated_task.title" placeholder="title"/>
+  <br>
+  <input type="text" name="updated_task.description" [(ngModel)]="updated_task.description" placeholder="description"/>
+  <br>
+  <input type="submit" value="Save"/>
+</form>
+  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
 <br>
 
-<!-- <input type="text" [value]="id"/> -->
-
-<!-- this yet works with a hardcoded id -->
-<button (click) = "getTask( '5a88ba8bbced5b11f3e1150a' )" >Click to get task "5a88ba8bbced5b11f3e1150a"</button>
-<p *ngIf = "task.length > 0">The task: {{task[0]["title"]}} {{task[0]["description"]}} Id: {{task[0]["_id"]}}</p>
-
-<br>
-<br>
-<br>
-<br>
-
+<h2>other examples</h2>
 <p *ngIf = "loggedIn">You are logged in!</p>
 <p *ngIf = "tasks.length < 5">You need more tasks</p>
 

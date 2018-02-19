@@ -2,10 +2,10 @@ console.log( "******** app.component.ts ********" );
 
 import { 
   Component,
-  OnInit //STITCHING2
+  OnInit
 } from '@angular/core';
 
-import { HttpService } from "./http.service"; //STITCHING
+import { HttpService } from "./http.service";
 
 @Component({
   selector: 'app-root',
@@ -13,19 +13,26 @@ import { HttpService } from "./http.service"; //STITCHING
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit { //STITCHING2
-  title = 'app';
+export class AppComponent implements OnInit {
+  
+  new_task: any;
+  updated_task: any;
+  tasks_all = [];
+  task = {};
+
   num: number;
   randNum: number;
   str: string;
   first_name: string;
   loggedIn: boolean;
 
-  constructor( private _httpService: HttpService ){} //STITCHING
+  constructor( private _httpService: HttpService ){}
   
-  ngOnInit(){ //STITCHING2
-    // this.getTasksFromService();
-    // this.getTask( "5a88ba8bbced5b11f3e1150a" );
+  ngOnInit(){
+    this.new_task = { title: "", description: "" }
+    this.updated_task = { title: "", description: "" }
+
+    //OTHER EXAMPLES
     this.num = 7;
     this.randNum = Math.floor( (Math.random() * 2 ) +1 );
     this.str = "Hello Angular Developer!";
@@ -33,23 +40,42 @@ export class AppComponent implements OnInit { //STITCHING2
     this.loggedIn = true;
   }
 
-  tasks = [];
-  
-  getTasksFromService(){ //STITCHING2
-    let observable = this._httpService.getTasks();
+  tasks_create(){
+    let observable = this._httpService.tasks_create( this.new_task );
     observable.subscribe( data => {
-      this.tasks = data; //ME EDITED
-      // this.tasks = data["tasks"]; //ORIGINALLY SUGGESTED
-      console.log( "Got our tasks!", this.tasks );
+      console.log ( "tasks_create says:", data )
+    })
+    this.new_task = { title: "", description: "" }
+  }
+
+  tasks(){
+    let observable = this._httpService.tasks();
+    observable.subscribe( data => {
+      this.tasks_all = data["data"];
+      console.log( "Got our tasks!", data );
     });
   }
 
-  task = {};
-  getTask( id ) {
-    let observable = this._httpService.getTask( id );
+  tasks_one( id ){
+    let observable = this._httpService.tasks_one( id );
     observable.subscribe( data => {
-      this.task = data;
+      this.task = data["data"][0];
       console.log( this.task );
+    });
+  }
+
+  tasks_update( id ){
+    let observable = this._httpService.tasks_update( id, this.updated_task );
+    observable.subscribe( data => {
+      console.log( data )
+    })
+    this.updated_task = { title: "", description: "" }
+  }
+  
+  tasks_delete( id ){
+    let observable = this._httpService.tasks_delete( id );
+    observable.subscribe( data => {
+      console.log( data );
     })
   }
 

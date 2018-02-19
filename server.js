@@ -28,7 +28,7 @@ app.get( "/tasks", function( req, res ){
         if( err )
             res.send( err );
         else
-            res.send( data );
+            res.json( { message: "success", data: data } );
     });
 });
 
@@ -37,7 +37,7 @@ app.get( "/tasks/:id", function( req, res ){
         if( err )
             res.send( err );
         else
-            res.send( data );
+            res.json( { message: "success", data: data } );
     });
 });
 
@@ -50,7 +50,7 @@ app.post( "/tasks", function( req, res ){
         if( err )
             res.send( err );
         else
-            res.redirect( "/tasks" );
+            res.json( { message: "success" } );
     });
 });
 
@@ -62,7 +62,7 @@ app.put( "/tasks/:id", function( req, res ){
         if( err )
             res.send( err );
         else
-            res.redirect( "/tasks" );
+            res.json( { message: "success" } );
     });
 });
 
@@ -71,7 +71,7 @@ app.delete( "/tasks/:id", function( req, res ){
         if( err )
             res.send( err );
         else
-            res.redirect( "/tasks" );
+            res.json( { message: "success" } );
     });
 });
 
